@@ -21,10 +21,16 @@ code {
 }
 
 .vertical-bars {
-    width: 2rem;
-    height: 100%;
-    background-color: #a7cbf6df;
+    min-width: 1rem;
+    height: 10rem;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-bars:hover {
+    background-color: #dbd8d878;
 }
 
 .news-image {

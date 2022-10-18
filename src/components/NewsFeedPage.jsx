@@ -78,27 +78,29 @@ const NewsFeedPage = () => {
                             margin: '1rem auto',
                         }}
                     >
-                        {previousNewsBtn && (
-                            <Box
-                                className="vertical-bars"
-                                component="div"
-                                onClick={handleLeftArrowClick}
-                            >
+                        <Box
+                            className="vertical-bars"
+                            component="div"
+                            onClick={handleLeftArrowClick}
+                        >
+                            {previousNewsBtn && (
                                 <ChevronLeftIcon fontSize="small" />
-                            </Box>
-                        )}
+                            )}
+                        </Box>
+
                         <Box>
                             <NewsContent activeNewsFeed={activeNewsFeed} />
                         </Box>
-                        {nextNewsBtn && (
-                            <Box
-                                className="vertical-bars"
-                                component="div"
-                                onClick={handleRightArrowClick}
-                            >
+
+                        <Box
+                            className="vertical-bars"
+                            component="div"
+                            onClick={handleRightArrowClick}
+                        >
+                            {nextNewsBtn && (
                                 <ChevronRightIcon fontSize="small" />
-                            </Box>
-                        )}
+                            )}
+                        </Box>
                     </Stack>
                 )}
             </Box>

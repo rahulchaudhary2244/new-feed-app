@@ -23,7 +23,7 @@ const NewsContent = ({ activeNewsFeed }) => {
             <Typography variant="h6" component="h6">
                 {title}
             </Typography>
-            <Stack
+            {/* <Stack
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
@@ -45,7 +45,7 @@ const NewsContent = ({ activeNewsFeed }) => {
                 ) : (
                     <VisibilityOutlinedIcon />
                 )}
-            </Stack>
+                </Stack>*/}
             <br />
             <Box component="a" href={url} rel="noopener" target="_blank">
                 <Box
