@@ -5,6 +5,7 @@ This coding challenge is provided by [VenueMonk](https://www.venuemonk.com/)
 ## Demo
 
 ![news-feed-app-rahul.gif](https://github.com/rahulchaudhary2244/media-repository/blob/main/news-feed-app.gif)
+![news-feed-app-rahul-2.gif](https://github.com/rahulchaudhary2244/media-repository/blob/main/news-feed-app-gif-2.gif)
 
 ## Run Locally
 
