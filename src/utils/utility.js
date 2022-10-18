@@ -46,7 +46,7 @@ const fetchDataForSource = async (source = '') => {
         //https://newsapi.org/docs/get-started#top-headlines
         const searchParams = new URLSearchParams();
         searchParams.set('sources', source);
-        searchParams.set('apiKey', 'd6aa8054c2544c24b267f0d26d51a696');
+        searchParams.set('apiKey', '56628de93d4e421b825b78710f6e67ce');
         const API_URL = `https://newsapi.org/v2/top-headlines?${searchParams.toString()}`;
 
         const response = await fetch(API_URL);
