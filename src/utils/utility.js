@@ -114,7 +114,9 @@ const isPreviousNewsExist = async (id) => {
 };
 
 /**
- * latest news in the next visit should appear first
+ * if there is a news which is latest and isn't seen yet then return it
+ * if all news are seen then return next news
+ * if no news is viewed then return 1st news
  * @param {String} id
  * @returns {Array<Object>}
  */
@@ -123,16 +125,20 @@ const getLatestUnseenNews = async (id) => {
     const doneReading = JSON.parse(localStorage.getItem('doneReading'));
     if (doneReading) {
         const unRead = data.filter((ele) => !doneReading.includes(ele.id));
-        const read = data.filter((ele) => doneReading.includes(ele.id));
-        const newData = unRead.concat(read);
-        return newData[0];
+        if (!!unRead.length) return unRead[0];
+        if (data[0].id === id) return data[0].id;
+        const currIdx = data.findIndex((ele) => ele.id === id);
+        const nextNews = data[currIdx - 1];
+        return nextNews;
     } else {
         return data[0];
     }
 };
 
 /**
- * returns boolean value to show next button
+ * if all news are seen and user is at latest news then return false
+ * if all news are seen and user is not at latest news then return true
+ * if some news haven't been read then return true
  * @param {String} id
  * @returns {Boolean}
  */
@@ -142,8 +148,11 @@ const isNextNewsExist = async (id) => {
     if (doneReading) {
         const unRead = data.filter((ele) => !doneReading.includes(ele.id));
         if (!!unRead.length) return true;
+        if (data[0].id === id) return false;
+        const currIdx = data.findIndex((ele) => ele.id === id);
+        return currIdx - 1 >= 0;
     } else {
-        return false;
+        return true;
     }
 };
 
