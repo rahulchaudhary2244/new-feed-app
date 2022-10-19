@@ -7,13 +7,6 @@ import { isNewsViewed } from '../utils/utility';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-/**
- * splits content paragraph and removes [+ 3042 chars] from content and sends proper text
- * @param {String} str
- * @returns
- */
-const getContentWithoutDots = (content = '') => content.split('[+')[0];
-
 const NewsContent = ({ activeNewsFeed }) => {
     const { title, urlToImage, publishedAt, url, id, description, content } =
         activeNewsFeed;
@@ -51,7 +44,11 @@ const NewsContent = ({ activeNewsFeed }) => {
                 <Box
                     component="img"
                     src={urlToImage}
-                    className="news-image"
+                    className={
+                        urlToImage
+                            ? 'news-image'
+                            : 'vissibility-hidden news-image'
+                    }
                     loading="lazy"
                 />
             </Box>
@@ -59,7 +56,7 @@ const NewsContent = ({ activeNewsFeed }) => {
             <Typography variant="subtitle1">{description}</Typography>
             <br />
             <Typography variant="subtitle1">
-                {getContentWithoutDots(content)}
+                {content}
                 <Box component="a" href={url} rel="noopener" target="_blank">
                     {`Read more`}
                 </Box>

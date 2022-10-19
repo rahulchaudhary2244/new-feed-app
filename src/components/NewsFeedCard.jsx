@@ -38,6 +38,7 @@ const NewsFeedCard = ({ newsFeed }) => {
                     image={urlToImage}
                     alt={id}
                     loading="lazy"
+                    className={!!urlToImage ? '' : 'vissibility-hidden'}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h6" component="div">

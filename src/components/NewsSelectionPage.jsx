@@ -38,41 +38,46 @@ const NewsSelectionPage = () => {
     }, []);
 
     return (
-        <Box>
+        <>
             <Header />
             <Box className="app-container">
                 {isLoading ? (
-                    <CircularProgress color="secondary" />
+                    <Box className="loading-container">
+                        <CircularProgress color="secondary" />
+                    </Box>
                 ) : (
-                    <Box
-                        sx={{
-                            width: { xs: '98%', md: '70%' },
-                            margin: '2rem auto',
-                        }}
-                    >
+                    <Box className="content-container">
                         <Box
                             sx={{
-                                width: '98%',
+                                width: { xs: '98%', md: '70%' },
                                 margin: '2rem auto',
                             }}
                         >
-                            <Grid
-                                container
-                                spacing={{ xs: 1, sm: 2, md: 4 }}
-                                rowSpacing={{ xs: 1, sm: 5, md: 4 }}
+                            <Box
+                                sx={{
+                                    width: '98%',
+                                    margin: '2rem auto',
+                                }}
                             >
-                                {newsFeeds.map((ele) => (
-                                    <Grid item xs={12} md={6} key={ele.id}>
-                                        <NewsFeedCard newsFeed={ele} />
-                                    </Grid>
-                                ))}
-                            </Grid>
+                                <Grid
+                                    container
+                                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                                    rowSpacing={{ xs: 1, sm: 5, md: 4 }}
+                                >
+                                    {newsFeeds.map((ele) => (
+                                        <Grid item xs={12} md={6} key={ele.id}>
+                                            <NewsFeedCard newsFeed={ele} />
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </Box>
                         </Box>
                     </Box>
                 )}
             </Box>
+
             <Footer />
-        </Box>
+        </>
     );
 };
 

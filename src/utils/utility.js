@@ -36,24 +36,34 @@ const sortByDateAndOrder = (arr = [], key = '', order = '') => {
     return arr;
 };
 
-/**
- *
- * @param {String} source source for news like bbc-news or techcrunch
- * @returns {Array<String>}
- */
-const fetchDataForSource = async (source = '') => {
+const fetchFlipboardNewsFeed = async (source = '') => {
     try {
-        //https://newsapi.org/docs/get-started#top-headlines
-        const searchParams = new URLSearchParams();
-        searchParams.set('sources', source);
-        searchParams.set('apiKey', '56628de93d4e421b825b78710f6e67ce');
-        const API_URL = `https://newsapi.org/v2/top-headlines?${searchParams.toString()}`;
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=https://flipboard.com/@${source}.rss`;
 
         const response = await fetch(API_URL);
         const data = await response.json();
 
         if (data.status === 'ok') {
-            return data.articles;
+            return data.items.map((ele) => {
+                const {
+                    enclosure,
+                    pubDate,
+                    guid,
+                    title,
+                    link,
+                    description,
+                    content,
+                } = ele;
+                return {
+                    title,
+                    urlToImage: enclosure.link,
+                    publishedAt: pubDate,
+                    url: link,
+                    id: guid,
+                    description,
+                    content,
+                };
+            });
         }
         throw new Error(`cannot get news`);
     } catch (error) {
@@ -67,12 +77,10 @@ const fetchDataForSource = async (source = '') => {
  * @returns {Array<String>}
  */
 const fetchAllNews = async () => {
-    const bbcData = await fetchDataForSource('bbc-news');
-    const techcrunchData = []; //await fetchDataForSource('techcrunch');
+    const theHindu = await fetchFlipboardNewsFeed('TheHindu');
+    const hindustanTimes = await fetchFlipboardNewsFeed('HindustanTimes');
 
-    const buildData = bbcData.concat(techcrunchData).map((ele) => {
-        return { ...ele, id: getIdFromUrl(ele.url) };
-    });
+    const buildData = theHindu.concat(hindustanTimes);
 
     const sortedData = sortByDateAndOrder(buildData, 'publishedAt', 'desc');
     return sortedData;

@@ -66,42 +66,46 @@ const NewsFeedPage = () => {
             <Header />
             <Box className="app-container">
                 {isLoading ? (
-                    <CircularProgress color="secondary" />
+                    <Box className="loading-container">
+                        <CircularProgress color="secondary" />
+                    </Box>
                 ) : (
-                    <Stack
-                        direction="row"
-                        justifyContent="space-evenly"
-                        alignItems="center"
-                        spacing={0.5}
-                        sx={{
-                            width: { xs: '95%', md: '60%' },
-                            margin: '1rem auto',
-                        }}
-                    >
-                        <Box
-                            className="vertical-bars"
-                            component="div"
-                            onClick={handleLeftArrowClick}
+                    <Box className="content-container">
+                        <Stack
+                            direction="row"
+                            justifyContent="space-evenly"
+                            alignItems="center"
+                            spacing={0.5}
+                            sx={{
+                                width: { xs: '95%', md: '60%' },
+                                margin: '1rem auto',
+                            }}
                         >
-                            {previousNewsBtn && (
-                                <ChevronLeftIcon fontSize="small" />
-                            )}
-                        </Box>
+                            <Box
+                                className="vertical-bars"
+                                component="div"
+                                onClick={handleLeftArrowClick}
+                            >
+                                {previousNewsBtn && (
+                                    <ChevronLeftIcon fontSize="small" />
+                                )}
+                            </Box>
 
-                        <Box>
-                            <NewsContent activeNewsFeed={activeNewsFeed} />
-                        </Box>
+                            <Box>
+                                <NewsContent activeNewsFeed={activeNewsFeed} />
+                            </Box>
 
-                        <Box
-                            className="vertical-bars"
-                            component="div"
-                            onClick={handleRightArrowClick}
-                        >
-                            {nextNewsBtn && (
-                                <ChevronRightIcon fontSize="small" />
-                            )}
-                        </Box>
-                    </Stack>
+                            <Box
+                                className="vertical-bars"
+                                component="div"
+                                onClick={handleRightArrowClick}
+                            >
+                                {nextNewsBtn && (
+                                    <ChevronRightIcon fontSize="small" />
+                                )}
+                            </Box>
+                        </Stack>
+                    </Box>
                 )}
             </Box>
             <Footer />

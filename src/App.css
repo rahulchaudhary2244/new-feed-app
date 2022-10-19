@@ -22,11 +22,12 @@ code {
 
 .vertical-bars {
     min-width: 1rem;
-    height: 10rem;
+    min-height: 10rem;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .vertical-bars:hover {
@@ -55,8 +56,22 @@ code {
 }
 
 .app-container {
-    min-height: 82vh;
+    min-height: 90vh;
+}
+
+.content-container {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.loading-container {
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vissibility-hidden {
+    visibility: hidden;
 }
