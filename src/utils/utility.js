@@ -1,14 +1,4 @@
 /**
- * replace special characters from url and returns it
- * @param {String} url
- * @returns {String}
- */
-const getIdFromUrl = (url = '') => {
-    //replace special characters from url
-    return url.replace(/[^\w ]/g, '');
-};
-
-/**
  * returns boolean by checking if news is viewed or not from localstorage
  * @param {String} id
  * @returns {Boolean}
@@ -182,7 +172,6 @@ const setIdToLocalStorage_doneReading = (id) => {
 };
 
 export {
-    getIdFromUrl,
     fetchAllNews,
     fetchNewsById,
     sortByDateAndOrder,

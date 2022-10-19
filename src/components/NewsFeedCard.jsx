@@ -7,7 +7,7 @@ import { CardActionArea, Stack } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
-import { getIdFromUrl, isNewsViewed } from '../utils/utility';
+import { isNewsViewed } from '../utils/utility';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import moment from 'moment/moment';
 
@@ -20,8 +20,6 @@ const NewsFeedCard = ({ newsFeed }) => {
      * @param {Click} e
      */
     const handleClick = (e) => {
-        const id = getIdFromUrl(url);
-
         navigate(`/news/${id}`, {
             state: {
                 newsFeed,
