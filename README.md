@@ -1,6 +1,7 @@
 # React News Feed App
-
 This coding challenge is provided by [VenueMonk](https://www.venuemonk.com/)
+
+## Click here to visit - [https://news-feed-react-app.netlify.app/](https://news-feed-react-app.netlify.app/)
 
 ## Demo
 
