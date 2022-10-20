@@ -37,6 +37,7 @@ const NewsFeedPage = () => {
      * Performs logic for left arrow click
      */
     const leftArrowLogic = async () => {
+        if (!previousNewsBtn) return;
         setLoading(true);
         const previousNews = await getPreviousNewsById(activeNewsFeed.id);
         setActiveNewsFeed(previousNews);
@@ -47,6 +48,7 @@ const NewsFeedPage = () => {
      * Performs logic for right arrow click
      */
     const rightArrowLogic = async () => {
+        if (!nextNewsBtn) return;
         setLoading(true);
         const unseenNewsData = await getLatestUnseenNews(activeNewsFeed.id);
         setActiveNewsFeed(unseenNewsData);
