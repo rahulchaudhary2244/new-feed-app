@@ -12,8 +12,11 @@ const NewsContent = ({ activeNewsFeed }) => {
         activeNewsFeed;
 
     return (
-        <Box component="div">
-            <Typography variant="h6" component="h6">
+        <Box
+            component="div"
+            sx={{ border: '3px solid #7b1fa236', borderRadius: '5px' }}
+        >
+            <Typography variant="h6" component="h6" sx={{ padding: '0.5rem' }}>
                 {title}
             </Typography>
             {/* <Stack
@@ -39,7 +42,7 @@ const NewsContent = ({ activeNewsFeed }) => {
                     <VisibilityOutlinedIcon />
                 )}
                 </Stack>*/}
-            <br />
+
             <Box component="a" href={url} rel="noopener" target="_blank">
                 <Box
                     component="img"
@@ -52,10 +55,10 @@ const NewsContent = ({ activeNewsFeed }) => {
                     loading="lazy"
                 />
             </Box>
-            <br />
-            <Typography variant="subtitle1">{description}</Typography>
-            <br />
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" sx={{ padding: '0.5rem' }}>
+                {description}
+            </Typography>
+            <Typography variant="subtitle1" sx={{ padding: '0.5rem' }}>
                 {content}{' '}
                 <Box component="a" href={url} rel="noopener" target="_blank">
                     {`Read more`}
