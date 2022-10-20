@@ -56,7 +56,7 @@ const NewsContent = ({ activeNewsFeed }) => {
             <Typography variant="subtitle1">{description}</Typography>
             <br />
             <Typography variant="subtitle1">
-                {content}
+                {content}{' '}
                 <Box component="a" href={url} rel="noopener" target="_blank">
                     {`Read more`}
                 </Box>
