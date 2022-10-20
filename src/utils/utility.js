@@ -33,7 +33,8 @@ const sortByDateAndOrder = (arr = [], key = '', order = '') => {
  */
 const fetchFlipboardNewsFeed = async (source = '') => {
     try {
-        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=https://flipboard.com/@${source}.rss`;
+        const api_key = 'dsyty2eushil2jfhwtdb4he2yhsln3x2kfbtl2yb';
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=https://flipboard.com/@${source}.rss&api_key=${api_key}`;
 
         const response = await fetch(API_URL);
         const data = await response.json();
@@ -98,7 +99,7 @@ const fetchNewsById = async (id) => {
  */
 const clearNewsFromLocalStorage = async () => {
     const doneReading = JSON.parse(localStorage.getItem('doneReading'));
-    if (doneReading) {
+    if (doneReading && Array.isArray(doneReading) && doneReading.length) {
         const newsData = await fetchAllNews();
         const matchingIds = newsData
             .filter(({ id }) => doneReading.includes(id))

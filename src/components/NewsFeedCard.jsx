@@ -4,7 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Stack } from '@mui/material';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
 import { isNewsViewed } from '../utils/utility';
@@ -59,11 +58,7 @@ const NewsFeedCard = ({ newsFeed }) => {
                                 {moment(publishedAt).calendar()}
                             </Typography>
                         </Stack>
-                        {isNewsViewed(id) ? (
-                            <VisibilityIcon />
-                        ) : (
-                            <VisibilityOutlinedIcon />
-                        )}
+                        {isNewsViewed(id) && <VisibilityIcon />}
                     </Stack>
                 </CardContent>
             </CardActionArea>
