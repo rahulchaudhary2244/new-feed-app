@@ -26,10 +26,10 @@ const NewsFeedPage = () => {
     const [isLoading, setLoading] = useState(false);
     const handlers = useSwipeable({
         onSwipedRight: (e) => {
-            rightArrowLogic();
+            leftArrowLogic();
         },
         onSwipedLeft: (e) => {
-            leftArrowLogic();
+            rightArrowLogic();
         },
     });
 
