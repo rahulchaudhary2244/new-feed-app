@@ -14,6 +14,7 @@ import {
     setIdToLocalStorage_doneReading,
 } from '../utils/utility';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useSwipeable } from 'react-swipeable';
 
 const NewsFeedPage = () => {
     const location = useLocation();
@@ -23,6 +24,34 @@ const NewsFeedPage = () => {
     const [previousNewsBtn, setPreviousNewsBtn] = useState(false);
     const [nextNewsBtn, setNextNewsBtn] = useState(false);
     const [isLoading, setLoading] = useState(false);
+    const handlers = useSwipeable({
+        onSwipedRight: (e) => {
+            rightArrowLogic();
+        },
+        onSwipedLeft: (e) => {
+            leftArrowLogic();
+        },
+    });
+
+    /**
+     * Performs logic for left arrow click
+     */
+    const leftArrowLogic = async () => {
+        setLoading(true);
+        const previousNews = await getPreviousNewsById(activeNewsFeed.id);
+        setActiveNewsFeed(previousNews);
+        setLoading(false);
+    };
+
+    /**
+     * Performs logic for right arrow click
+     */
+    const rightArrowLogic = async () => {
+        setLoading(true);
+        const unseenNewsData = await getLatestUnseenNews(activeNewsFeed.id);
+        setActiveNewsFeed(unseenNewsData);
+        setLoading(false);
+    };
 
     /**
      * fetches values for next and previous state button and sets it
@@ -38,22 +67,16 @@ const NewsFeedPage = () => {
      *
      * @param {Click} e
      */
-    const handleLeftArrowClick = async (e) => {
-        setLoading(true);
-        const previousNews = await getPreviousNewsById(activeNewsFeed.id);
-        setActiveNewsFeed(previousNews);
-        setLoading(false);
+    const handleLeftArrowClick = (e) => {
+        leftArrowLogic();
     };
 
     /**
      *
      * @param {Click} e
      */
-    const handleRightArrowClick = async (e) => {
-        setLoading(true);
-        const unseenNewsData = await getLatestUnseenNews(activeNewsFeed.id);
-        setActiveNewsFeed(unseenNewsData);
-        setLoading(false);
+    const handleRightArrowClick = (e) => {
+        rightArrowLogic();
     };
 
     useEffect(() => {
@@ -91,7 +114,7 @@ const NewsFeedPage = () => {
                                 )}
                             </Box>
 
-                            <Box>
+                            <Box {...handlers}>
                                 <NewsContent activeNewsFeed={activeNewsFeed} />
                             </Box>
 
