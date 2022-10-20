@@ -26,6 +26,18 @@ const sortByDateAndOrder = (arr = [], key = '', order = '') => {
     return arr;
 };
 
+const getApiKey = () => {
+    const keysArr = [
+        'dsyty2eushil2jfhwtdb4he2yhsln3x2kfbtl2yb',
+        'eypntdben13skphky2cxhesy0zgfycp1omelkucz',
+        'ac7amxs33myt8ohuhntfcfmlpzzubogfdpj6lmic',
+        'tuyajvm4nqeuaaaeorrjxdld1dulajtd0hkrmih6',
+        'hwz5ywwpaxlo7lwcnilo8wdywo45u0e1pgyfdaly',
+    ];
+    const key = keysArr[Math.floor(Math.random() * keysArr.length)];
+    return key;
+};
+
 /**
  * Don't use fetchFlipboardNewsFeed() instead use fetchAllNews()
  * @param {Promise<Array<Object>>} source
@@ -33,7 +45,7 @@ const sortByDateAndOrder = (arr = [], key = '', order = '') => {
  */
 const fetchFlipboardNewsFeed = async (source = '') => {
     try {
-        const api_key = 'dsyty2eushil2jfhwtdb4he2yhsln3x2kfbtl2yb';
+        const api_key = getApiKey();
         const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=https://flipboard.com/@${source}.rss&api_key=${api_key}`;
 
         const response = await fetch(API_URL);
