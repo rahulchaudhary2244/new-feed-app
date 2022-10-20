@@ -56,7 +56,7 @@ const NewsFeedCard = ({ newsFeed }) => {
                         >
                             <AccessTimeIcon fontSize="small" />
                             <Typography variant="overline" display="block">
-                                {moment(publishedAt).fromNow()}
+                                {moment(publishedAt).calendar()}
                             </Typography>
                         </Stack>
                         {isNewsViewed(id) ? (
