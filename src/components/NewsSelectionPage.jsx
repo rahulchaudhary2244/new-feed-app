@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import Header from './Header';
 import Footer from './Footer';
-import { fetchAllNews } from '../utils/utility';
+import { fetchAllNews, clearNewsFromLocalStorage } from '../utils/utility';
 import NewsFeedCard from './NewsFeedCard';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -35,6 +35,7 @@ const NewsSelectionPage = () => {
 
     useEffect(() => {
         fetchNews();
+        clearNewsFromLocalStorage();
     }, []);
 
     return (

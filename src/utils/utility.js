@@ -26,6 +26,11 @@ const sortByDateAndOrder = (arr = [], key = '', order = '') => {
     return arr;
 };
 
+/**
+ * Don't use fetchFlipboardNewsFeed() instead use fetchAllNews()
+ * @param {Promise<Array<Object>>} source
+ * @returns
+ */
 const fetchFlipboardNewsFeed = async (source = '') => {
     try {
         const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=https://flipboard.com/@${source}.rss`;
@@ -63,8 +68,8 @@ const fetchFlipboardNewsFeed = async (source = '') => {
 };
 
 /**
- * returns news data by fetching from bbc-news and techcrunch
- * @returns {Array<String>}
+ * returns news data by fetching from bbc-news and techcrunch in sorted publish date
+ * @returns {Array<Object>}
  */
 const fetchAllNews = async () => {
     const theHindu = await fetchFlipboardNewsFeed('TheHindu');
@@ -86,6 +91,20 @@ const fetchNewsById = async (id) => {
     const news = data.find((ele) => ele.id === id);
     if (news) return news;
     return {};
+};
+
+/**
+ * Applies local storage clearing logic for news
+ */
+const clearNewsFromLocalStorage = async () => {
+    const doneReading = JSON.parse(localStorage.getItem('doneReading'));
+    if (doneReading) {
+        const newsData = await fetchAllNews();
+        const matchingIds = newsData
+            .filter(({ id }) => doneReading.includes(id))
+            .map(({ id }) => id);
+        localStorage.setItem('doneReading', JSON.stringify(matchingIds));
+    }
 };
 
 /**
@@ -181,4 +200,5 @@ export {
     isPreviousNewsExist,
     isNextNewsExist,
     setIdToLocalStorage_doneReading,
+    clearNewsFromLocalStorage,
 };
