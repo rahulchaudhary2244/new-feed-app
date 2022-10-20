@@ -82,12 +82,13 @@ const NewsFeedPage = () => {
     useEffect(() => {
         setIdToLocalStorage_doneReading(activeNewsFeed.id);
         fetchPreviousAndNextBtnState();
+        // eslint-disable-next-line
     }, [activeNewsFeed]);
 
     return (
         <>
             <Header />
-            <Box className="app-container">
+            <Box {...handlers} className="app-container">
                 {isLoading ? (
                     <Box className="loading-container">
                         <CircularProgress color="secondary" />
@@ -100,7 +101,7 @@ const NewsFeedPage = () => {
                             alignItems="center"
                             spacing={0.5}
                             sx={{
-                                width: { xs: '95%', md: '60%' },
+                                width: { xs: '100%', md: '60%' },
                                 margin: '1rem auto',
                             }}
                         >
@@ -113,11 +114,9 @@ const NewsFeedPage = () => {
                                     <ChevronLeftIcon fontSize="small" />
                                 )}
                             </Box>
-
-                            <Box {...handlers}>
+                            <Box>
                                 <NewsContent activeNewsFeed={activeNewsFeed} />
                             </Box>
-
                             <Box
                                 className="vertical-bars"
                                 component="div"

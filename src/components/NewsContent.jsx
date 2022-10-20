@@ -12,10 +12,7 @@ const NewsContent = ({ activeNewsFeed }) => {
         activeNewsFeed;
 
     return (
-        <Box
-            component="div"
-            sx={{ border: '3px solid #7b1fa236', borderRadius: '5px' }}
-        >
+        <Box component="div">
             <Typography variant="h6" component="h6" sx={{ padding: '0.5rem' }}>
                 {title}
             </Typography>
